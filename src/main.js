@@ -1,4 +1,5 @@
 import "../src/style.css";
+import { deleteElement, modifyElement, updateLiContent } from "./tools";
 
 document.querySelector("#app").innerHTML = /*html */ `
 <div>
@@ -26,23 +27,14 @@ const ul = document.querySelector("ul");
 
 document.querySelector("#btnGo").addEventListener("click", () => {
   const inputValue = input.value;
+  
   if (inputValue.trim() !== "") {
     const li = document.createElement("li");
-    ul.appendChild(li);
-    li.className = "bg-slate-500 p-2 rounded-lg text-center border border-b-4";
-    li.innerHTML += inputValue;
-    const icon1Elem = document.createElement("i");
-    icon1Elem.className = "icon-trash fa-solid fa-trash ml-3 text-red-500";
-    li.appendChild(icon1Elem);
-    const icon2Elem = document.createElement("i");
-    icon2Elem.className = "fa-solid fa-pencil ml-4 text-red-500";
-    li.appendChild(icon2Elem);
-
+    ul.appendChild(li)
     
+    updateLiContent(li, inputValue, input)
     
 
-    input.value = "";
+    
   }
 });
-
-const iconTrash = document.querySelector(".icon-trash");
